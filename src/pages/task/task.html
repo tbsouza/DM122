@@ -1,0 +1,39 @@
+
+<!-- Pagina de Edição de Tasks -->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>task</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-100>
+        <ion-list>
+          <form (ngSubmit)="salvar()">
+              <ion-item>
+                <ion-label>Tarefa</ion-label>
+                <ion-input [(ngModel)]="task.name" type="text" name="name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Detalhes</ion-label>
+                <ion-input [(ngModel)]="task.detail" type="text" name="detail"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Prioridade</ion-label>
+                <ion-select name="selectedPriority" [(ngModel)]="selectedPriority">
+                  <ion-option [value]="p" *ngFor="let p of priorities">
+                    {{p}}
+                  </ion-option>
+                </ion-select>
+              </ion-item>
+              <button ion-button type="submit" block>Salvar</button>
+          </form>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
