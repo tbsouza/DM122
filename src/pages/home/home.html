@@ -3,23 +3,23 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      O que devo fazer
+      PEDIDOS
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let task of tasks" [ngClass]="task.priority">
+    <ion-item-sliding *ngFor="let pedido of pedidos" [ngClass]="pedido.status">
       <ion-item>
-        <h2>{{task.name}}</h2>
-        <p>{{task.detail}}</p>
+        <h2>Pedido: {{pedido.idPedido}}</h2>
+        <p>Atualização: {{pedido.dataAtualizacao}}</p>
       </ion-item>
       <ion-item-options side="rigth">
-          <button (click)="editItem(task)" ion-button color="secondary" large>
+          <button (click)="editItem(pedido)" ion-button color="secondary" large>
             <ion-icon name="create"></ion-icon>
           </button>
-          <button (click)="deleteItem(task)" ion-button color="danger" large>
+          <button (click)="deleteItem(pedido)" ion-button color="danger" large>
             <ion-icon name="trash"></ion-icon>
           </button>
       </ion-item-options>
@@ -28,7 +28,7 @@
     <ion-item></ion-item>
   </ion-list>
   <ion-fab right bottom>
-    <button ion-fab (click)="goToTask()">
+    <button ion-fab (click)="goToPedido()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

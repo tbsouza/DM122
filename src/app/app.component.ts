@@ -26,8 +26,8 @@ export class MyApp {
         projectId: "dm122-a163d",
         storageBucket: "dm122-a163d.appspot.com",
         messagingSenderId: "888253233343"
-    };
-    firebase.initializeApp(config);
+      };
+      firebase.initializeApp(config);
 
     });
   }

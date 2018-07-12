@@ -1,33 +1,32 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { TodoService } from '../../services/todo.service'
-import { Task } from '../../model/task.model'
-import { TaskPage } from '../task/task'
+import { PedidoService } from '../../services/pedido.service'
+import { Pedido } from '../../model/pedido.model'
+import { PedidoPage } from '../pedido/pedido'
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  tasks:Array<Task>
+  
+  pedidos:Array<Pedido>
 
-  constructor(public navCtrl: NavController,
-              private todoService: TodoService) {
-     this.tasks = this.todoService.loadTask() 
+  constructor(public navCtrl: NavController, private pedidoService:PedidoService) {
+
+     this.pedidos = this.pedidoService.loadPedidos() 
   }
 
-  goToTask(){
-      this.navCtrl.push(TaskPage)
+  goToPedido(){
+      this.navCtrl.push(PedidoPage)
   }
 
-  editItem(item:Task){
-    this.navCtrl.push(TaskPage, {"taskToEdit": item})
+  editItem(item:Pedido){
+    this.navCtrl.push(PedidoPage, {"pedidoToEdit": item})
   }
 
   deleteItem(item){
     //TODO:remover item
   }
-
-
-
 }

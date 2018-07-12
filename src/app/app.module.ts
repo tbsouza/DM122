@@ -6,16 +6,16 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { TaskPage } from '../pages/task/task'
-
-import { TodoService } from '../services/todo.service'
-//import firebase from 'firebase';
+import { TaskPage } from '../pages/task/task';
+import { PedidoService } from '../services/pedido.service';
+import { PedidoPage } from '../pages/pedido/pedido';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    TaskPage
+    TaskPage,
+    PedidoPage
   ],
   imports: [
     BrowserModule,
@@ -25,13 +25,13 @@ import { TodoService } from '../services/todo.service'
   entryComponents: [
     MyApp,
     HomePage,
-    TaskPage
+    TaskPage,
+    PedidoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    TodoService,
-    //firebase,
+    PedidoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
