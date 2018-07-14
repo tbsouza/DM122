@@ -4,7 +4,7 @@ export class Pedido{
 
     private idPedido:string;
     private dataEmissao:string;
-    private dataAtualizacao:string;
+    private dataAtualizacao:number;
     private vendedor:string;
     private frete:string;
     private transportadora:string;
@@ -14,7 +14,7 @@ export class Pedido{
                 transportadora:string, status:string ){
         this.idPedido = "" + Math.floor(Math.random() * 10001);
         this.dataEmissao = dataEmissao;
-        this.dataAtualizacao = "" + Date.now();
+        this.dataAtualizacao = Date.now();
         this.vendedor = vendedor;
         this.frete = frete;
         this.transportadora = transportadora;
@@ -34,7 +34,7 @@ export class Pedido{
     }
 
     setDataAtualizacao(){
-        this.dataAtualizacao = "" + Math.floor(Date.now()/1000);
+        this.dataAtualizacao = Date.now();
     }
 
     getDataAtualizacao(){

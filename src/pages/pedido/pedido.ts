@@ -39,14 +39,20 @@ export class PedidoPage {
 
   // envia para firebase
   salvar(){ 
-    this.pedido.setStatus(Status[this.selectedStatus])
-    if(this.isEdit)
+
+    // Atualiza o status do pedido
+    //this.pedido.setStatus(Status[this.selectedStatus]);
+    
+    if(this.isEdit){
         this.pedidoService.edit(this.pedido);
-    else
+    }
+    else{
         this.pedidoService.addPedido(this.pedido);
+    }
     
       //go to home
     this.navCtrl.push(HomePage);
+
   }
 
 

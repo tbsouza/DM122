@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { TaskPage } from '../pages/task/task';
 import { PedidoService } from '../services/pedido.service';
 import { PedidoPage } from '../pages/pedido/pedido';
 
@@ -14,7 +13,6 @@ import { PedidoPage } from '../pages/pedido/pedido';
   declarations: [
     MyApp,
     HomePage,
-    TaskPage,
     PedidoPage
   ],
   imports: [
@@ -25,7 +23,6 @@ import { PedidoPage } from '../pages/pedido/pedido';
   entryComponents: [
     MyApp,
     HomePage,
-    TaskPage,
     PedidoPage
   ],
   providers: [

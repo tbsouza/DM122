@@ -18,6 +18,8 @@ export class PedidoService{
     // TODO update on firebase
     edit(pedido:Pedido){
         this.pedidos = this.pedidos.filter(p => p.getIdPedido() != pedido.getIdPedido());
+        // Atualiza data de atualição do pedido
+        pedido.setDataAtualizacao();
         this.pedidos.push(pedido);
     }
 
@@ -28,7 +30,16 @@ export class PedidoService{
 
     // TODO return all from firebase
     loadPedidos(){
-        return this.pedidos;
+
+        // retorna lista de pedidos ordenada
+        return this.pedidos.sort( (p1,p2) => {
+            if( p1.getDataAtualizacao() > p2.getDataAtualizacao() )
+                return 1;
+            if ( p1.getDataAtualizacao() < p2.getDataAtualizacao() )
+                return -1;
+            return 0;
+        } );
+
     }
 
     addFirebase(){
