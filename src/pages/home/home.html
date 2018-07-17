@@ -9,6 +9,12 @@
 </ion-header>
 
 <ion-content padding>
+
+    <ion-searchbar (ionInput)="getPedidos($event)" 
+                    placeholder="Filtrar pedidos"
+                    animated="true">
+    </ion-searchbar>
+
   <ion-list>
     <ion-item-sliding *ngFor="let pedido of pedidos" [ngClass]="pedido.status">
       <ion-item>

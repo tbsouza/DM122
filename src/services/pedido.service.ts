@@ -11,8 +11,9 @@ export class PedidoService{
     //TODO adiciona pedidos no firebase e cria array de pedidos
     constructor(){
         this.pedidos = new Array();
-        this.pedidos.push( new Pedido("10-07-2018", "Thiago", "R$10", "Gol", Status["Transporte"]) );
-        this.pedidos.push( new Pedido("08-07-2018", "Thiago", "R$20", "Fedex", Status["Processando"]) );
+        this.pedidos.push( new Pedido("10-07-2018", "Thiago", "R$10", "China Mail", Status["Transporte"]) );
+        this.pedidos.push( new Pedido("14-07-2018", "Barbosa", "R$20", "Fedex", Status["Processando"]) );
+        this.pedidos.push( new Pedido("04-07-2018", "Souza", "R$14", "Correios", Status["Executando"]) );
     }
 
     // TODO update on firebase
@@ -33,9 +34,9 @@ export class PedidoService{
 
         // retorna lista de pedidos ordenada
         return this.pedidos.sort( (p1,p2) => {
-            if( p1.getDataAtualizacao() > p2.getDataAtualizacao() )
+            if( p1.getDataAtualizacao() < p2.getDataAtualizacao() )
                 return 1;
-            if ( p1.getDataAtualizacao() < p2.getDataAtualizacao() )
+            if ( p1.getDataAtualizacao() > p2.getDataAtualizacao() )
                 return -1;
             return 0;
         } );

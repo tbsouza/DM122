@@ -4,7 +4,7 @@ export class Pedido{
 
     private idPedido:string;
     private dataEmissao:string;
-    private dataAtualizacao:number;
+    private dataAtualizacao:string;
     private vendedor:string;
     private frete:string;
     private transportadora:string;
@@ -12,9 +12,10 @@ export class Pedido{
 
     constructor(dataEmissao:string, vendedor:string, frete:string, 
                 transportadora:string, status:string ){
+
         this.idPedido = "" + Math.floor(Math.random() * 10001);
         this.dataEmissao = dataEmissao;
-        this.dataAtualizacao = Date.now();
+        this.dataAtualizacao = dataEmissao;
         this.vendedor = vendedor;
         this.frete = frete;
         this.transportadora = transportadora;
@@ -33,8 +34,22 @@ export class Pedido{
         return this.dataEmissao
     }
 
+    // data de atualizacao do pedido
+    // utilizada na ordenacao dos pedidos
     setDataAtualizacao(){
-        this.dataAtualizacao = Date.now();
+        // data atual
+        var dateObj = new Date();
+
+        // Formata a data
+        var day = ("0" + dateObj.getDate()).slice(-2);
+        var month = ("0" + (dateObj.getMonth()+1)).slice(-2);
+        var year = dateObj.getFullYear();
+        
+        // monta a data dd-mm-yyyy
+        var date = day + "-" + month + "-" + year;
+
+        // set data
+        this.dataAtualizacao = date;
     }
 
     getDataAtualizacao(){

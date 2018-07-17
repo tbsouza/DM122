@@ -37,11 +37,12 @@ export class PedidoPage {
     console.log('ionViewDidLoad PedidoPage');
   }
 
-  // envia para firebase
-  salvar(){ 
 
+  // TODO update no firebase
+  salvar(){ 
+    
     // Atualiza o status do pedido
-    //this.pedido.setStatus(Status[this.selectedStatus]);
+    this.pedido.setStatus( Status[this.selectedStatus] );
     
     if(this.isEdit){
         this.pedidoService.edit(this.pedido);
@@ -50,11 +51,10 @@ export class PedidoPage {
         this.pedidoService.addPedido(this.pedido);
     }
     
-      //go to home
+    //go to home
     this.navCtrl.push(HomePage);
 
   }
-
 
   private setStatus( valueStatus:string ){
       this.status.forEach(

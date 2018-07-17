@@ -25678,14 +25678,14 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
-page-home .priority-high {
+page-home .Processando {
   border-left: solid 10px darkred;
 }
 
-page-home .priority-medium {
+page-home .Executando {
   border-left: solid 10px darkorange;
 }
 
-page-home .priority-low {
+page-home .Transporte {
   border-left: solid 10px yellowgreen;
 }
