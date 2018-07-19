@@ -10,7 +10,7 @@ webpackJsonp([1],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_pedido_service__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_pedido_model__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_status_model__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_status_model__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,10 +45,10 @@ var PedidoPage = /** @class */ (function () {
     PedidoPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad PedidoPage');
     };
-    // envia para firebase
+    // TODO update no firebase
     PedidoPage.prototype.salvar = function () {
         // Atualiza o status do pedido
-        //this.pedido.setStatus(Status[this.selectedStatus]);
+        this.pedido.setStatus(__WEBPACK_IMPORTED_MODULE_5__model_status_model__["a" /* Status */][this.selectedStatus]);
         if (this.isEdit) {
             this.pedidoService.edit(this.pedido);
         }
@@ -133,7 +133,7 @@ var Pedido = /** @class */ (function () {
     function Pedido(dataEmissao, vendedor, frete, transportadora, status) {
         this.idPedido = "" + Math.floor(Math.random() * 10001);
         this.dataEmissao = dataEmissao;
-        this.dataAtualizacao = Date.now();
+        this.dataAtualizacao = dataEmissao;
         this.vendedor = vendedor;
         this.frete = frete;
         this.transportadora = transportadora;
@@ -148,8 +148,19 @@ var Pedido = /** @class */ (function () {
     Pedido.prototype.getDataEmissao = function () {
         return this.dataEmissao;
     };
+    // data de atualizacao do pedido
+    // utilizada na ordenacao dos pedidos
     Pedido.prototype.setDataAtualizacao = function () {
-        this.dataAtualizacao = Date.now();
+        // data atual
+        var dateObj = new Date();
+        // Formata a data
+        var day = ("0" + dateObj.getDate()).slice(-2);
+        var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+        var year = dateObj.getFullYear();
+        // monta a data dd-mm-yyyy
+        var date = day + "-" + month + "-" + year;
+        // set data
+        this.dataAtualizacao = date;
     };
     Pedido.prototype.getDataAtualizacao = function () {
         return this.dataAtualizacao;
@@ -185,7 +196,7 @@ var Pedido = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 157:
+/***/ 158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -221,9 +232,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_pedido_service__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_pedido_pedido__ = __webpack_require__(105);
@@ -281,18 +292,16 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 276:
+/***/ 288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(79);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -307,25 +316,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen) {
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */];
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             statusBar.styleDefault();
             splashScreen.hide();
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyArw0MxGt6VIhRxs_94ZbGJ8GqnO2QGLLE",
-                authDomain: "dm122-a163d.firebaseapp.com",
-                databaseURL: "https://dm122-a163d.firebaseio.com",
-                projectId: "dm122-a163d",
-                storageBucket: "dm122-a163d.appspot.com",
-                messagingSenderId: "888253233343"
-            };
-            __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.initializeApp(config);
+            /*
+                  // Initialize Firebase
+                  var config = {
+                    apiKey: "AIzaSyArw0MxGt6VIhRxs_94ZbGJ8GqnO2QGLLE",
+                    authDomain: "dm122-a163d.firebaseapp.com",
+                    databaseURL: "https://dm122-a163d.firebaseio.com",
+                    projectId: "dm122-a163d",
+                    storageBucket: "dm122-a163d.appspot.com",
+                    messagingSenderId: "888253233343"
+                  };
+                  firebase.initializeApp(config);
+            */
         });
     }
     MyApp = __decorate([
@@ -394,10 +404,9 @@ var HomePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/'<!-- Página inicial -->\n\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      PEDIDOS\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getPedidos($event)" \n                    placeholder="Filtrar pedidos"\n                    animated="true">\n    </ion-searchbar>\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let pedido of pedidos" [ngClass]="pedido.status">\n      <ion-item>\n        <h2>Pedido: {{pedido.idPedido}}</h2>\n        <p>Atualização: {{pedido.dataAtualizacao}}</p>\n      </ion-item>\n      <ion-item-options side="rigth">\n          <button (click)="editItem(pedido)" ion-button color="secondary" large>\n            <ion-icon name="create"></ion-icon>\n          </button>\n          <button (click)="deleteItem(pedido)" ion-button color="danger" large>\n            <ion-icon name="trash"></ion-icon>\n          </button>\n      </ion-item-options>\n    </ion-item-sliding>\n\n    <ion-item></ion-item>\n  </ion-list>\n  <ion-fab right bottom>\n    <button ion-fab (click)="goToPedido()">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */]])
     ], HomePage);
     return HomePage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -411,7 +420,9 @@ var HomePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PedidoService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_status_model__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_status_model__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -424,19 +435,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PedidoService = /** @class */ (function () {
-    //TODO adiciona pedidos no firebase e cria array de pedidos
     function PedidoService() {
+        // inicializa o firebase
+        this.initializeFirebase();
+        // referencia para o banco já ordenada por data de atualizacao
+        this.referencia = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref('pedidos').orderByChild('dataAtualizacao');
+        this.getPedidos();
         this.pedidos = new Array();
-        this.pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */]("10-07-2018", "Thiago", "R$10", "Gol", __WEBPACK_IMPORTED_MODULE_2__model_status_model__["a" /* Status */]["Transporte"]));
-        this.pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */]("08-07-2018", "Thiago", "R$20", "Fedex", __WEBPACK_IMPORTED_MODULE_2__model_status_model__["a" /* Status */]["Processando"]));
+        this.pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */]("10-07-2018", "Thiago", "R$10", "China Mail", __WEBPACK_IMPORTED_MODULE_3__model_status_model__["a" /* Status */]["Transporte"]));
+        this.pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */]("14-07-2018", "Barbosa", "R$20", "Fedex", __WEBPACK_IMPORTED_MODULE_3__model_status_model__["a" /* Status */]["Processando"]));
+        this.pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */]("04-07-2018", "Souza", "R$14", "Correios", __WEBPACK_IMPORTED_MODULE_3__model_status_model__["a" /* Status */]["Executando"]));
     }
     // TODO update on firebase
     PedidoService.prototype.edit = function (pedido) {
         this.pedidos = this.pedidos.filter(function (p) { return p.getIdPedido() != pedido.getIdPedido(); });
         // Atualiza data de atualição do pedido
         pedido.setDataAtualizacao();
+        // Armazena o pedido atualiza
         this.pedidos.push(pedido);
+        /*
+                // atualiza o pedido no banco - data de atualizacao e status
+                this.referencia.ref(pedido.getIdPedido()).update({
+                    dataAtualizacao : pedido.getDataAtualizacao(),
+                    status : pedido.getStatus()
+                });
+        
+                  //this.referencia.update();
+        */
     };
     // TODO add to firebase
     PedidoService.prototype.addPedido = function (pedido) {
@@ -444,16 +471,40 @@ var PedidoService = /** @class */ (function () {
     };
     // TODO return all from firebase
     PedidoService.prototype.loadPedidos = function () {
+        //this.getPedidos();
         // retorna lista de pedidos ordenada
         return this.pedidos.sort(function (p1, p2) {
-            if (p1.getDataAtualizacao() > p2.getDataAtualizacao())
-                return 1;
             if (p1.getDataAtualizacao() < p2.getDataAtualizacao())
+                return 1;
+            if (p1.getDataAtualizacao() > p2.getDataAtualizacao())
                 return -1;
             return 0;
         });
     };
-    PedidoService.prototype.addFirebase = function () {
+    // Pega todos os pedidos do firebase e add na lista de pedidos
+    PedidoService.prototype.getPedidos = function () {
+        console.log(this.referencia);
+        var idPedidos = new Array();
+        // pega todos os pedidos
+        this.referencia.on('value', function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                console.log("Key: " + childSnapshot.key + " Value: " + childSnapshot.value);
+                idPedidos.push(childSnapshot.key);
+            });
+        });
+        //this.referencia.ref( idPedidos[0] );
+    };
+    PedidoService.prototype.initializeFirebase = function () {
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyArw0MxGt6VIhRxs_94ZbGJ8GqnO2QGLLE",
+            authDomain: "dm122-a163d.firebaseapp.com",
+            databaseURL: "https://dm122-a163d.firebaseio.com",
+            projectId: "dm122-a163d",
+            storageBucket: "dm122-a163d.appspot.com",
+            messagingSenderId: "888253233343"
+        };
+        __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.initializeApp(config);
     };
     PedidoService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

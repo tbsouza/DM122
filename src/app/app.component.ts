@@ -17,7 +17,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
+/*
       // Initialize Firebase
       var config = {
         apiKey: "AIzaSyArw0MxGt6VIhRxs_94ZbGJ8GqnO2QGLLE",
@@ -28,7 +28,7 @@ export class MyApp {
         messagingSenderId: "888253233343"
       };
       firebase.initializeApp(config);
-
+*/
     });
   }
 }

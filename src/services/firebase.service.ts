@@ -8,7 +8,7 @@ export class FirebaseService{
 
 
     getFirebaseReference(){
-        var ref = firebase.database().ref("dm122-a163d/statuspedido");
+        var ref = firebase.database().ref("dm122-a163d/pedidos");
     }
 
 

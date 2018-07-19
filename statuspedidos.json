@@ -1,1 +1,33 @@
-{   "statuspedido" : {     "key" : {       "idPedido" : "",    "dataEmissao": "",    "dataAtualizacao": "",       "vendedor" : "",    "frete" : "",    "transportadora" : "",    "status" : ""     }   } }
+{
+	"pedidos" : {
+		"5158" : {
+			"idPedido" : "5158",
+			"dataEmissao": "10-07-2018",
+			"dataAtualizacao": "10-07-2018",
+			"vendedor" : "Thiago",
+			"frete" : "R$10",
+			"transportadora" : "China Mail",
+			"status" : "Transporte"
+		},
+		
+		"8168" : {
+			"idPedido" : "8168",
+			"dataEmissao": "04-07-2018",
+			"dataAtualizacao": "04-07-2018",
+			"vendedor" : "Thiago Barbosa",
+			"frete" : "R$14",
+			"transportadora" : "Correios",
+			"status" : "Executando"
+		},
+		
+		"9132" : {
+			"idPedido" : "9132",
+			"dataEmissao": "12-07-2018",
+			"dataAtualizacao": "12-07-2018",
+			"vendedor" : "Thiago Souza",
+			"frete" : "R$25",
+			"transportadora" : "Fedex",
+			"status" : "Processando"
+		}
+	}
+}
