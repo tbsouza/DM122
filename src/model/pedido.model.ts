@@ -10,12 +10,13 @@ export class Pedido{
     private transportadora:string;
     private status:string;
 
-    constructor(dataEmissao:string, vendedor:string, frete:string, 
-                transportadora:string, status:string ){
+    // construtor com sobrecarga de parametros
+    constructor( dataEmissao:string, vendedor:string, frete:string, 
+        transportadora:string, status:string, idPedido?:string, dataAtualizacao?:string ){
 
-        this.idPedido = "" + Math.floor(Math.random() * 10001);
+        this.idPedido = idPedido && idPedido || ("" + Math.floor(Math.random() * 10001));
         this.dataEmissao = dataEmissao;
-        this.dataAtualizacao = dataEmissao;
+        this.dataAtualizacao = dataAtualizacao && dataAtualizacao || dataEmissao;
         this.vendedor = vendedor;
         this.frete = frete;
         this.transportadora = transportadora;

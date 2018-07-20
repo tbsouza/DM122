@@ -45,7 +45,6 @@ var PedidoPage = /** @class */ (function () {
     PedidoPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad PedidoPage');
     };
-    // TODO update no firebase
     PedidoPage.prototype.salvar = function () {
         // Atualiza o status do pedido
         this.pedido.setStatus(__WEBPACK_IMPORTED_MODULE_5__model_status_model__["a" /* Status */][this.selectedStatus]);
@@ -57,6 +56,9 @@ var PedidoPage = /** @class */ (function () {
         }
         //go to home
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+    };
+    PedidoPage.prototype.excluir = function (pedido) {
+        this.pedidoService.excluirPedido(pedido);
     };
     PedidoPage.prototype.setStatus = function (valueStatus) {
         var _this = this;
@@ -71,10 +73,10 @@ var PedidoPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-pedido',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\pedido\pedido.html"*/'\n<!-- Pagina de Edição de um Pedido -->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Pedido</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <ion-list>\n          <form (ngSubmit)="salvar()">\n\n              <ion-item>\n                <ion-label>id Pedido</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.idPedido" type="text" name="idPedido"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Data de Emissao</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.dataEmissao" type="text" name="dataEmissao"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Data de Atualizacao</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.dataAtualizacao" type="text" name="dataAtualizacao"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Vendedor</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.vendedor" type="text" name="vendedor"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Frete</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.frete" type="text" name="frete"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Transportadora</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.transportadora" type="text" name="transportadora"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Status Pedido</ion-label>\n                <ion-select name="selectedStatus" [(ngModel)]="selectedStatus">\n                  <ion-option [value]="s" *ngFor="let s of status">\n                    {{s}}\n                  </ion-option>\n                </ion-select>\n              </ion-item>\n\n              <button ion-button type="submit" block>Salvar</button>\n\n          </form>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\pedido\pedido.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__services_pedido_service__["a" /* PedidoService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_pedido_service__["a" /* PedidoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_pedido_service__["a" /* PedidoService */]) === "function" && _c || Object])
     ], PedidoPage);
     return PedidoPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=pedido.js.map
@@ -130,10 +132,11 @@ module.exports = webpackAsyncContext;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Pedido; });
 // Modelo dos pedidos
 var Pedido = /** @class */ (function () {
-    function Pedido(dataEmissao, vendedor, frete, transportadora, status) {
-        this.idPedido = "" + Math.floor(Math.random() * 10001);
+    // construtor com sobrecarga de parametros
+    function Pedido(dataEmissao, vendedor, frete, transportadora, status, idPedido, dataAtualizacao) {
+        this.idPedido = idPedido && idPedido || ("" + Math.floor(Math.random() * 10001));
         this.dataEmissao = dataEmissao;
-        this.dataAtualizacao = dataEmissao;
+        this.dataAtualizacao = dataAtualizacao && dataAtualizacao || dataEmissao;
         this.vendedor = vendedor;
         this.frete = frete;
         this.transportadora = transportadora;
@@ -381,10 +384,10 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.goToPedido = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__pedido_pedido__["a" /* PedidoPage */]);
     };
-    HomePage.prototype.editItem = function (item) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__pedido_pedido__["a" /* PedidoPage */], { "pedidoToEdit": item });
+    HomePage.prototype.editPedido = function (pedido) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__pedido_pedido__["a" /* PedidoPage */], { "pedidoToEdit": pedido });
     };
-    HomePage.prototype.deleteItem = function (item) {
+    HomePage.prototype.deletePedido = function (pedido) {
         //TODO:remover item
     };
     // funcao do filtro de pedidos
@@ -402,11 +405,12 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/'<!-- Página inicial -->\n\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      PEDIDOS\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getPedidos($event)" \n                    placeholder="Filtrar pedidos"\n                    animated="true">\n    </ion-searchbar>\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let pedido of pedidos" [ngClass]="pedido.status">\n      <ion-item>\n        <h2>Pedido: {{pedido.idPedido}}</h2>\n        <p>Atualização: {{pedido.dataAtualizacao}}</p>\n      </ion-item>\n      <ion-item-options side="rigth">\n          <button (click)="editItem(pedido)" ion-button color="secondary" large>\n            <ion-icon name="create"></ion-icon>\n          </button>\n          <button (click)="deleteItem(pedido)" ion-button color="danger" large>\n            <ion-icon name="trash"></ion-icon>\n          </button>\n      </ion-item-options>\n    </ion-item-sliding>\n\n    <ion-item></ion-item>\n  </ion-list>\n  <ion-fab right bottom>\n    <button ion-fab (click)="goToPedido()">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/'<!-- Página inicial -->\n\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      PEDIDOS\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getPedidos($event)" \n                    placeholder="Filtrar pedidos"\n                    animated="true">\n    </ion-searchbar>\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let pedido of pedidos" [ngClass]="pedido.status">\n      <ion-item>\n        <h2>Pedido: {{pedido.idPedido}}</h2>\n        <p>Atualização: {{pedido.dataAtualizacao}}</p>\n      </ion-item>\n      <ion-item-options side="rigth">\n          <button (click)="editPedido(pedido)" ion-button color="secondary" large>\n            <ion-icon name="create"></ion-icon>\n          </button>\n          <button (click)="deletePedido(pedido)" ion-button color="danger" large>\n            <ion-icon name="trash"></ion-icon>\n          </button>\n      </ion-item-options>\n    </ion-item-sliding>\n\n    <ion-item></ion-item>\n  </ion-list>\n  <ion-fab right bottom>\n    <button ion-fab (click)="goToPedido()">\n      <ion-icon name="star"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */]) === "function" && _b || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -422,7 +426,6 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_status_model__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -435,43 +438,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var PedidoService = /** @class */ (function () {
     function PedidoService() {
+        // instancia lista de pedidos
+        this.pedidos = new Array();
         // inicializa o firebase
         this.initializeFirebase();
         // referencia para o banco já ordenada por data de atualizacao
-        this.referencia = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref('pedidos').orderByChild('dataAtualizacao');
-        this.getPedidos();
-        this.pedidos = new Array();
-        this.pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */]("10-07-2018", "Thiago", "R$10", "China Mail", __WEBPACK_IMPORTED_MODULE_3__model_status_model__["a" /* Status */]["Transporte"]));
-        this.pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */]("14-07-2018", "Barbosa", "R$20", "Fedex", __WEBPACK_IMPORTED_MODULE_3__model_status_model__["a" /* Status */]["Processando"]));
-        this.pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */]("04-07-2018", "Souza", "R$14", "Correios", __WEBPACK_IMPORTED_MODULE_3__model_status_model__["a" /* Status */]["Executando"]));
+        this.referencia = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref('pedidos');
+        // OBS.: Com o firebase é possível ordernar os pedidos por data de atualização
+        // utilizando .orderByChild('dataAtualizacao') porem abenas decescente
     }
-    // TODO update on firebase
     PedidoService.prototype.edit = function (pedido) {
         this.pedidos = this.pedidos.filter(function (p) { return p.getIdPedido() != pedido.getIdPedido(); });
         // Atualiza data de atualição do pedido
         pedido.setDataAtualizacao();
         // Armazena o pedido atualiza
         this.pedidos.push(pedido);
-        /*
-                // atualiza o pedido no banco - data de atualizacao e status
-                this.referencia.ref(pedido.getIdPedido()).update({
-                    dataAtualizacao : pedido.getDataAtualizacao(),
-                    status : pedido.getStatus()
-                });
-        
-                  //this.referencia.update();
-        */
+        // TODO - Corrigir erro
+        // atualiza o pedido no banco - data de atualizacao e status
+        this.referencia.ref(pedido.getIdPedido()).update({
+            dataAtualizacao: pedido.getDataAtualizacao(),
+            status: pedido.getStatus()
+        });
+        //this.referencia.update();
     };
-    // TODO add to firebase
+    // adiciona novo pedido
     PedidoService.prototype.addPedido = function (pedido) {
         this.pedidos.push(pedido);
+        // adiciona no firebase
     };
-    // TODO return all from firebase
+    //eclui um pedido da lista
+    PedidoService.prototype.excluirPedido = function (pedido) {
+        this.pedidos = this.pedidos.filter(function (p) { return p.getIdPedido() != pedido.getIdPedido(); });
+    };
+    // Carrega todo os pedidos
     PedidoService.prototype.loadPedidos = function () {
-        //this.getPedidos();
+        this.getPedidos(this.pedidos);
+        return this.pedidos;
         // retorna lista de pedidos ordenada
         return this.pedidos.sort(function (p1, p2) {
             if (p1.getDataAtualizacao() < p2.getDataAtualizacao())
@@ -482,17 +486,32 @@ var PedidoService = /** @class */ (function () {
         });
     };
     // Pega todos os pedidos do firebase e add na lista de pedidos
-    PedidoService.prototype.getPedidos = function () {
-        console.log(this.referencia);
-        var idPedidos = new Array();
-        // pega todos os pedidos
+    PedidoService.prototype.getPedidos = function (pedidos) {
+        var attrPedidos;
+        // acessa os pedidos no banco (pedidos/idPedido)
         this.referencia.on('value', function (snapshot) {
+            // itera por todos os pedidos
             snapshot.forEach(function (childSnapshot) {
-                console.log("Key: " + childSnapshot.key + " Value: " + childSnapshot.value);
-                idPedidos.push(childSnapshot.key);
+                attrPedidos = new Array();
+                // itera pelos atributos de cada pedido
+                for (var key in childSnapshot.val()) {
+                    var value = childSnapshot.val()[key];
+                    attrPedidos.push(value);
+                }
+                /*
+                Key: idPedido
+                0: dataAtualizacao
+                1: dataEmissao
+                2: frete
+                3: idPedido
+                4: status
+                5: transportadora
+                6: vendedor
+                */
+                // adiciona o pedido na lista para exibir
+                pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */](attrPedidos[1], attrPedidos[6], attrPedidos[2], attrPedidos[5], attrPedidos[4], attrPedidos[3], attrPedidos[0]));
             });
         });
-        //this.referencia.ref( idPedidos[0] );
     };
     PedidoService.prototype.initializeFirebase = function () {
         // Initialize Firebase

@@ -8,24 +8,22 @@ export class PedidoService{
 
     pedidos:any;
     referencia:any;
+    ref:any;
 
     constructor(){
+
+        // instancia lista de pedidos
+        this.pedidos = new Array();
 
         // inicializa o firebase
         this.initializeFirebase();
 
         // referencia para o banco já ordenada por data de atualizacao
-        this.referencia = firebase.database().ref('pedidos').orderByChild('dataAtualizacao');
-        
-        this.getPedidos();
-
-        this.pedidos = new Array();
-        this.pedidos.push( new Pedido("10-07-2018", "Thiago", "R$10", "China Mail", Status["Transporte"]) );
-        this.pedidos.push( new Pedido("14-07-2018", "Barbosa", "R$20", "Fedex", Status["Processando"]) );
-        this.pedidos.push( new Pedido("04-07-2018", "Souza", "R$14", "Correios", Status["Executando"]) );
+        this.referencia = firebase.database().ref('pedidos');
+            // OBS.: Com o firebase é possível ordernar os pedidos por data de atualização
+            // utilizando .orderByChild('dataAtualizacao') porem abenas decescente
     }
 
-    // TODO update on firebase
     edit(pedido:Pedido){
         this.pedidos = this.pedidos.filter(p => p.getIdPedido() != pedido.getIdPedido());
         
@@ -34,7 +32,8 @@ export class PedidoService{
         // Armazena o pedido atualiza
         this.pedidos.push(pedido);
 
-/*
+        // TODO - Corrigir erro
+
         // atualiza o pedido no banco - data de atualizacao e status
         this.referencia.ref(pedido.getIdPedido()).update({
             dataAtualizacao : pedido.getDataAtualizacao(),
@@ -42,18 +41,28 @@ export class PedidoService{
         });
 
           //this.referencia.update();
-*/
     }
 
-    // TODO add to firebase
+
+    // adiciona novo pedido
     addPedido(pedido:Pedido){
         this.pedidos.push(pedido);
+        // adiciona no firebase
     }
 
-    // TODO return all from firebase
+
+    //eclui um pedido da lista
+    excluirPedido(pedido:Pedido){
+        this.pedidos = this.pedidos.filter(p => p.getIdPedido() != pedido.getIdPedido());
+    }
+
+
+    // Carrega todo os pedidos
     loadPedidos(){
 
-       //this.getPedidos();
+       this.getPedidos(this.pedidos);
+
+       return this.pedidos;
 
         // retorna lista de pedidos ordenada
         return this.pedidos.sort( (p1,p2) => {
@@ -66,24 +75,49 @@ export class PedidoService{
 
     }
 
+
     // Pega todos os pedidos do firebase e add na lista de pedidos
-    getPedidos(){
-
-        console.log( this.referencia );
+    getPedidos(pedidos){
         
-        var idPedidos = new Array();
+        var attrPedidos;
 
-        // pega todos os pedidos
+        // acessa os pedidos no banco (pedidos/idPedido)
         this.referencia.on('value', function (snapshot) {
-   
+
+            // itera por todos os pedidos
             snapshot.forEach( function(childSnapshot) {
-                console.log( "Key: " + childSnapshot.key + " Value: " + childSnapshot.value );
-                idPedidos.push( childSnapshot.key );
+
+                attrPedidos = new Array();
+
+                // itera pelos atributos de cada pedido
+                for ( let key in childSnapshot.val() ) {
+                    let value = childSnapshot.val()[key];
+                    attrPedidos.push( value );
+                }
+
+                /* 
+                Key: idPedido
+                0: dataAtualizacao
+                1: dataEmissao
+                2: frete
+                3: idPedido
+                4: status
+                5: transportadora
+                6: vendedor
+                */
+                // adiciona o pedido na lista para exibir
+                pedidos.push( new Pedido(
+                                attrPedidos[1],
+                                attrPedidos[6],
+                                attrPedidos[2],
+                                attrPedidos[5],
+                                attrPedidos[4],
+                                attrPedidos[3],
+                                attrPedidos[0]
+                ) );
+
               });
-
         });
-
-        //this.referencia.ref( idPedidos[0] );
 
     }
 

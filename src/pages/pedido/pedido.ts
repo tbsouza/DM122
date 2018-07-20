@@ -19,6 +19,7 @@ export class PedidoPage {
   status = ["Processando","Executando","Transporte"];
   isEdit = false;
 
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
                private pedidoService:PedidoService) {
     
@@ -33,12 +34,12 @@ export class PedidoPage {
   
   }
 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad PedidoPage');
   }
 
 
-  // TODO update no firebase
   salvar(){ 
     
     // Atualiza o status do pedido
@@ -55,6 +56,12 @@ export class PedidoPage {
     this.navCtrl.push(HomePage);
 
   }
+
+
+  excluir(pedido){
+    this.pedidoService.excluirPedido(pedido);
+  }
+
 
   private setStatus( valueStatus:string ){
       this.status.forEach(

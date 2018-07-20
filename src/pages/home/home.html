@@ -22,10 +22,10 @@
         <p>Atualização: {{pedido.dataAtualizacao}}</p>
       </ion-item>
       <ion-item-options side="rigth">
-          <button (click)="editItem(pedido)" ion-button color="secondary" large>
+          <button (click)="editPedido(pedido)" ion-button color="secondary" large>
             <ion-icon name="create"></ion-icon>
           </button>
-          <button (click)="deleteItem(pedido)" ion-button color="danger" large>
+          <button (click)="deletePedido(pedido)" ion-button color="danger" large>
             <ion-icon name="trash"></ion-icon>
           </button>
       </ion-item-options>
@@ -35,7 +35,7 @@
   </ion-list>
   <ion-fab right bottom>
     <button ion-fab (click)="goToPedido()">
-      <ion-icon name="add"></ion-icon>
+      <ion-icon name="star"></ion-icon>
     </button>
   </ion-fab>
 </ion-content>

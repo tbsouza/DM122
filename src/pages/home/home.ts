@@ -13,22 +13,27 @@ export class HomePage {
   
   pedidos:Array<Pedido>
 
+
   constructor(public navCtrl: NavController, private pedidoService:PedidoService) {
 
      this.pedidos = this.pedidoService.loadPedidos();
   }
 
+
   goToPedido(){
       this.navCtrl.push(PedidoPage)
   }
 
-  editItem(item:Pedido){
-    this.navCtrl.push(PedidoPage, {"pedidoToEdit": item})
+
+  editPedido(pedido:Pedido){
+    this.navCtrl.push(PedidoPage, {"pedidoToEdit": pedido})
   }
 
-  deleteItem(item){
+
+  deletePedido(pedido){
     //TODO:remover item
   }
+
 
   // funcao do filtro de pedidos
   getPedidos(ev: any) {
@@ -47,7 +52,5 @@ export class HomePage {
     }
 
   }
-
-
-
+  
 }
