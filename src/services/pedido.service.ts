@@ -2,15 +2,15 @@ import { Injectable} from '@angular/core';
 import { Pedido } from '../model/pedido.model';
 import firebase from 'firebase';
 import { Status } from '../model/status.model';
+import { ToastController } from 'ionic-angular'
 
 @Injectable()
 export class PedidoService{
 
     pedidos:any;
     referencia:any;
-    ref:any;
 
-    constructor(){
+    constructor(private toastController:ToastController){
 
         // instancia lista de pedidos
         this.pedidos = new Array();
@@ -21,60 +21,65 @@ export class PedidoService{
         // referencia para o banco já ordenada por data de atualizacao
         this.referencia = firebase.database().ref('pedidos');
             // OBS.: Com o firebase é possível ordernar os pedidos por data de atualização
-            // utilizando .orderByChild('dataAtualizacao') porem abenas decescente
+            // utilizando .orderByChild('dataAtualizacao') em ordem decescente
     }
 
     edit(pedido:Pedido){
-        this.pedidos = this.pedidos.filter(p => p.getIdPedido() != pedido.getIdPedido());
-        
         // Atualiza data de atualição do pedido
         pedido.setDataAtualizacao();
-        // Armazena o pedido atualiza
-        this.pedidos.push(pedido);
-
-        // TODO - Corrigir erro
 
         // atualiza o pedido no banco - data de atualizacao e status
-        this.referencia.ref(pedido.getIdPedido()).update({
+        this.referencia.child(pedido.getIdPedido()).update({
             dataAtualizacao : pedido.getDataAtualizacao(),
             status : pedido.getStatus()
         });
 
-          //this.referencia.update();
+        let toast = this.toastController.create({
+            message: 'Status do pedido ' + pedido.getIdPedido() + ' atualizado.',
+            duration: 5000,
+            position: 'top'
+        })
+        toast.present();
     }
 
-
+/*
     // adiciona novo pedido
     addPedido(pedido:Pedido){
         this.pedidos.push(pedido);
-        // adiciona no firebase
     }
+*/
+// Obs.: Do ponto de vista do entregador, ao meu ver não faz sentido o
+//       entregador adicionar novos pedidos, apenas atualizá-los
 
 
-    //eclui um pedido da lista
+    //exclui um pedido da lista
     excluirPedido(pedido:Pedido){
-        this.pedidos = this.pedidos.filter(p => p.getIdPedido() != pedido.getIdPedido());
+        // deleta o pedido do banco
+        this.referencia.child( pedido.getIdPedido() ).remove();
+
+        let toast = this.toastController.create({
+            message: 'Pedido ' + pedido.getIdPedido() + ' excluido.',
+            duration: 5000,
+            position: 'top'
+        })
+        toast.present();
     }
+// Obs.: Dependendo do contexto pode fazer sentido o entregador excluir um pedido
+//       Por exemplo, após o pedido ser entregue e finalizado
+//       Portanto o método de excluir está implementado
 
 
     // Carrega todo os pedidos
     loadPedidos(){
 
-       this.getPedidos(this.pedidos);
-
-       return this.pedidos;
+        this.pedidos = new Array<Pedido>();
+        this.pedidos = this.getPedidos(this.pedidos);
 
         // retorna lista de pedidos ordenada
-        return this.pedidos.sort( (p1,p2) => {
-            if( p1.getDataAtualizacao() < p2.getDataAtualizacao() )
-                return 1;
-            if ( p1.getDataAtualizacao() > p2.getDataAtualizacao() )
-                return -1;
-            return 0;
-        } );
-
+        return this.pedidos.sort( (p1,p2) => 
+                (p1.getDataAtualizacao() < p2.getDataAtualizacao() ? 1 : -1)
+          );
     }
-
 
     // Pega todos os pedidos do firebase e add na lista de pedidos
     getPedidos(pedidos){
@@ -95,7 +100,7 @@ export class PedidoService{
                     attrPedidos.push( value );
                 }
 
-                /* 
+                /* attrPedidos
                 Key: idPedido
                 0: dataAtualizacao
                 1: dataEmissao
@@ -106,7 +111,7 @@ export class PedidoService{
                 6: vendedor
                 */
                 // adiciona o pedido na lista para exibir
-                pedidos.push( new Pedido(
+                pedidos.push( new Pedido( // construtor
                                 attrPedidos[1],
                                 attrPedidos[6],
                                 attrPedidos[2],
@@ -114,11 +119,12 @@ export class PedidoService{
                                 attrPedidos[4],
                                 attrPedidos[3],
                                 attrPedidos[0]
-                ) );
-
+                            ));
+                    // Obs.: Não é a forma mais elegante, mas é a forma que consegui
               });
         });
 
+        return pedidos;
     }
 
 

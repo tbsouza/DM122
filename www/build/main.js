@@ -1,16 +1,61 @@
-webpackJsonp([1],{
+webpackJsonp([2],{
 
 /***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the AboutPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AboutPage = /** @class */ (function () {
+    function AboutPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    AboutPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AboutPage');
+    };
+    AboutPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-about',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\about\about.html"*/'<!--\n  Generated template for the AboutPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sobre</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <p id="sobre">\n      Trabalho desenvolvido por Thiago Barbosa de Souza com auxílio do professor Elton Barbosa para a disciplina DM122.\n    </p>\n</ion-content>\n'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\about\about.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+    ], AboutPage);
+    return AboutPage;
+}());
+
+//# sourceMappingURL=about.js.map
+
+/***/ }),
+
+/***/ 106:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PedidoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_pedido_service__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_pedido_model__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_status_model__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_pedido_model__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_status_model__ = __webpack_require__(263);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -51,9 +96,6 @@ var PedidoPage = /** @class */ (function () {
         if (this.isEdit) {
             this.pedidoService.edit(this.pedido);
         }
-        else {
-            this.pedidoService.addPedido(this.pedido);
-        }
         //go to home
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
     };
@@ -71,19 +113,19 @@ var PedidoPage = /** @class */ (function () {
     };
     PedidoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-pedido',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\pedido\pedido.html"*/'\n<!-- Pagina de Edição de um Pedido -->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Pedido</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <ion-list>\n          <form (ngSubmit)="salvar()">\n\n              <ion-item>\n                <ion-label>id Pedido</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.idPedido" type="text" name="idPedido"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Data de Emissao</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.dataEmissao" type="text" name="dataEmissao"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Data de Atualizacao</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.dataAtualizacao" type="text" name="dataAtualizacao"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Vendedor</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.vendedor" type="text" name="vendedor"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Frete</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.frete" type="text" name="frete"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Transportadora</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.transportadora" type="text" name="transportadora"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Status Pedido</ion-label>\n                <ion-select name="selectedStatus" [(ngModel)]="selectedStatus">\n                  <ion-option [value]="s" *ngFor="let s of status">\n                    {{s}}\n                  </ion-option>\n                </ion-select>\n              </ion-item>\n\n              <button ion-button type="submit" block>Salvar</button>\n\n          </form>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\pedido\pedido.html"*/,
+            selector: 'page-pedido',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\pedido\pedido.html"*/'\n<!-- Pagina de Edição de um Pedido -->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Editar Pedido</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col width-100>\n        <ion-list>\n          <form (ngSubmit)="salvar()">\n\n              <ion-item>\n                <ion-label>id Pedido</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.idPedido" type="text" name="idPedido"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Data de Emissao</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.dataEmissao" type="text" name="dataEmissao"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Data de Atualizacao</ion-label>\n                <ion-input disabled="true" [(ngModel)]="pedido.dataAtualizacao" type="text" name="dataAtualizacao"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Vendedor</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.vendedor" type="text" name="vendedor"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Frete</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.frete" type="text" name="frete"></ion-input>\n              </ion-item>\n\n              <ion-item>\n                  <ion-label>Transportadora</ion-label>\n                  <ion-input disabled="true" [(ngModel)]="pedido.transportadora" type="text" name="transportadora"></ion-input>\n              </ion-item>\n\n              <!-- Apenas status do pedido habilitado para edicao -->\n              <ion-item>\n                <ion-label>Status Pedido</ion-label>\n                <ion-select name="selectedStatus" [(ngModel)]="selectedStatus">\n                  <ion-option [value]="s" *ngFor="let s of status">\n                    {{s}}\n                  </ion-option>\n                </ion-select>\n              </ion-item>\n\n              <button ion-button type="submit" block>Salvar</button>\n\n          </form>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\pedido\pedido.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_pedido_service__["a" /* PedidoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_pedido_service__["a" /* PedidoService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__services_pedido_service__["a" /* PedidoService */]])
     ], PedidoPage);
     return PedidoPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=pedido.js.map
 
 /***/ }),
 
-/***/ 114:
+/***/ 115:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -96,16 +138,20 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 114;
+webpackEmptyAsyncContext.id = 115;
 
 /***/ }),
 
-/***/ 155:
+/***/ 156:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../pages/about/about.module": [
+		290,
+		1
+	],
 	"../pages/pedido/pedido.module": [
-		289,
+		291,
 		0
 	]
 };
@@ -120,12 +166,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 155;
+webpackAsyncContext.id = 156;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 156:
+/***/ 157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -160,7 +206,7 @@ var Pedido = /** @class */ (function () {
         var day = ("0" + dateObj.getDate()).slice(-2);
         var month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
         var year = dateObj.getFullYear();
-        // monta a data dd-mm-yyyy
+        // monta a data no formato dd-mm-yyyy
         var date = day + "-" + month + "-" + year;
         // set data
         this.dataAtualizacao = date;
@@ -199,20 +245,6 @@ var Pedido = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 158:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Status; });
-//Define o status dos pedidos
-var Status = [];
-Status["Processando"] = "Processando";
-Status["Executando"] = "Executando";
-Status["Transporte"] = "Transporte";
-//# sourceMappingURL=status.model.js.map
-
-/***/ }),
-
 /***/ 202:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -234,19 +266,21 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_pedido_service__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_pedido_pedido__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_pedido_pedido__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_about_about__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -264,12 +298,14 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_pedido_pedido__["a" /* PedidoPage */]
+                __WEBPACK_IMPORTED_MODULE_8__pages_pedido_pedido__["a" /* PedidoPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_about_about__["a" /* AboutPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
+                        { loadChildren: '../pages/about/about.module#AboutPageModule', name: 'AboutPage', segment: 'about', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pedido/pedido.module#PedidoPageModule', name: 'PedidoPage', segment: 'pedido', priority: 'low', defaultHistory: [] }
                     ]
                 })
@@ -278,6 +314,7 @@ var AppModule = /** @class */ (function () {
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_about_about__["a" /* AboutPage */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_pedido_pedido__["a" /* PedidoPage */]
             ],
             providers: [
@@ -295,13 +332,27 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 288:
+/***/ 263:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Status; });
+//Define o status dos pedidos
+var Status = [];
+Status["Processando"] = "Processando";
+Status["Executando"] = "Executando";
+Status["Transporte"] = "Transporte";
+//# sourceMappingURL=status.model.js.map
+
+/***/ }),
+
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(79);
@@ -327,18 +378,6 @@ var MyApp = /** @class */ (function () {
             // Here you can do any higher level native things you might need.
             statusBar.styleDefault();
             splashScreen.hide();
-            /*
-                  // Initialize Firebase
-                  var config = {
-                    apiKey: "AIzaSyArw0MxGt6VIhRxs_94ZbGJ8GqnO2QGLLE",
-                    authDomain: "dm122-a163d.firebaseapp.com",
-                    databaseURL: "https://dm122-a163d.firebaseio.com",
-                    projectId: "dm122-a163d",
-                    storageBucket: "dm122-a163d.appspot.com",
-                    messagingSenderId: "888253233343"
-                  };
-                  firebase.initializeApp(config);
-            */
         });
     }
     MyApp = __decorate([
@@ -359,9 +398,10 @@ var MyApp = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pedido_pedido__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pedido_pedido__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__about_about__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -375,20 +415,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, pedidoService) {
         this.navCtrl = navCtrl;
         this.pedidoService = pedidoService;
+        this.pedidos = null;
         this.pedidos = this.pedidoService.loadPedidos();
     }
-    HomePage.prototype.goToPedido = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__pedido_pedido__["a" /* PedidoPage */]);
+    HomePage_1 = HomePage;
+    HomePage.prototype.goToAbout = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__about_about__["a" /* AboutPage */]);
     };
     HomePage.prototype.editPedido = function (pedido) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__pedido_pedido__["a" /* PedidoPage */], { "pedidoToEdit": pedido });
     };
     HomePage.prototype.deletePedido = function (pedido) {
-        //TODO:remover item
+        this.pedidoService.excluirPedido(pedido);
+        this.navCtrl.push(HomePage_1); // apos excluir atualiza a pagina
     };
     // funcao do filtro de pedidos
     HomePage.prototype.getPedidos = function (ev) {
@@ -403,14 +447,14 @@ var HomePage = /** @class */ (function () {
             });
         }
     };
-    HomePage = __decorate([
+    HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/'<!-- Página inicial -->\n\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      PEDIDOS\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getPedidos($event)" \n                    placeholder="Filtrar pedidos"\n                    animated="true">\n    </ion-searchbar>\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let pedido of pedidos" [ngClass]="pedido.status">\n      <ion-item>\n        <h2>Pedido: {{pedido.idPedido}}</h2>\n        <p>Atualização: {{pedido.dataAtualizacao}}</p>\n      </ion-item>\n      <ion-item-options side="rigth">\n          <button (click)="editPedido(pedido)" ion-button color="secondary" large>\n            <ion-icon name="create"></ion-icon>\n          </button>\n          <button (click)="deletePedido(pedido)" ion-button color="danger" large>\n            <ion-icon name="trash"></ion-icon>\n          </button>\n      </ion-item-options>\n    </ion-item-sliding>\n\n    <ion-item></ion-item>\n  </ion-list>\n  <ion-fab right bottom>\n    <button ion-fab (click)="goToPedido()">\n      <ion-icon name="star"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/'<!-- Página inicial -->\n\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n      PEDIDOS\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n    <ion-searchbar (ionInput)="getPedidos($event)" \n                    placeholder="Filtrar pedidos"\n                    animated="true">\n    </ion-searchbar>\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let pedido of pedidos" [ngClass]="pedido.status">\n      <ion-item>\n        <h2>Pedido: {{pedido.idPedido}}</h2>\n        <p>Atualização: {{pedido.dataAtualizacao}}</p>\n      </ion-item>\n      <ion-item-options side="rigth">\n          <button (click)="editPedido(pedido)" ion-button color="secondary" large>\n            <ion-icon name="create"></ion-icon>\n          </button>\n          <button (click)="deletePedido(pedido)" ion-button color="danger" large>\n            <ion-icon name="trash"></ion-icon>\n          </button>\n      </ion-item-options>\n    </ion-item-sliding>\n\n    <ion-item></ion-item>\n  </ion-list>\n  <ion-fab right bottom>\n    <button ion-fab (click)="goToAbout()">\n      <ion-icon name="star"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-content>'/*ion-inline-end:"C:\Users\tbsou\Desktop\Pós\2018\DM122 - HÍBRIDO\Trabalho\DM122\src\pages\home\home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__services_pedido_service__["a" /* PedidoService */]])
     ], HomePage);
     return HomePage;
-    var _a, _b;
+    var HomePage_1;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -423,9 +467,10 @@ var HomePage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PedidoService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -438,8 +483,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PedidoService = /** @class */ (function () {
-    function PedidoService() {
+    function PedidoService(toastController) {
+        this.toastController = toastController;
         // instancia lista de pedidos
         this.pedidos = new Array();
         // inicializa o firebase
@@ -447,42 +494,52 @@ var PedidoService = /** @class */ (function () {
         // referencia para o banco já ordenada por data de atualizacao
         this.referencia = __WEBPACK_IMPORTED_MODULE_2_firebase___default.a.database().ref('pedidos');
         // OBS.: Com o firebase é possível ordernar os pedidos por data de atualização
-        // utilizando .orderByChild('dataAtualizacao') porem abenas decescente
+        // utilizando .orderByChild('dataAtualizacao') em ordem decescente
     }
     PedidoService.prototype.edit = function (pedido) {
-        this.pedidos = this.pedidos.filter(function (p) { return p.getIdPedido() != pedido.getIdPedido(); });
         // Atualiza data de atualição do pedido
         pedido.setDataAtualizacao();
-        // Armazena o pedido atualiza
-        this.pedidos.push(pedido);
-        // TODO - Corrigir erro
         // atualiza o pedido no banco - data de atualizacao e status
-        this.referencia.ref(pedido.getIdPedido()).update({
+        this.referencia.child(pedido.getIdPedido()).update({
             dataAtualizacao: pedido.getDataAtualizacao(),
             status: pedido.getStatus()
         });
-        //this.referencia.update();
+        var toast = this.toastController.create({
+            message: 'Status do pedido ' + pedido.getIdPedido() + ' atualizado.',
+            duration: 5000,
+            position: 'top'
+        });
+        toast.present();
     };
-    // adiciona novo pedido
-    PedidoService.prototype.addPedido = function (pedido) {
-        this.pedidos.push(pedido);
-        // adiciona no firebase
-    };
-    //eclui um pedido da lista
+    /*
+        // adiciona novo pedido
+        addPedido(pedido:Pedido){
+            this.pedidos.push(pedido);
+        }
+    */
+    // Obs.: Do ponto de vista do entregador, ao meu ver não faz sentido o
+    //       entregador adicionar novos pedidos, apenas atualizá-los
+    //exclui um pedido da lista
     PedidoService.prototype.excluirPedido = function (pedido) {
-        this.pedidos = this.pedidos.filter(function (p) { return p.getIdPedido() != pedido.getIdPedido(); });
+        // deleta o pedido do banco
+        this.referencia.child(pedido.getIdPedido()).remove();
+        var toast = this.toastController.create({
+            message: 'Pedido ' + pedido.getIdPedido() + ' excluido.',
+            duration: 5000,
+            position: 'top'
+        });
+        toast.present();
     };
+    // Obs.: Dependendo do contexto pode fazer sentido o entregador excluir um pedido
+    //       Por exemplo, após o pedido ser entregue e finalizado
+    //       Portanto o método de excluir está implementado
     // Carrega todo os pedidos
     PedidoService.prototype.loadPedidos = function () {
-        this.getPedidos(this.pedidos);
-        return this.pedidos;
+        this.pedidos = new Array();
+        this.pedidos = this.getPedidos(this.pedidos);
         // retorna lista de pedidos ordenada
         return this.pedidos.sort(function (p1, p2) {
-            if (p1.getDataAtualizacao() < p2.getDataAtualizacao())
-                return 1;
-            if (p1.getDataAtualizacao() > p2.getDataAtualizacao())
-                return -1;
-            return 0;
+            return (p1.getDataAtualizacao() < p2.getDataAtualizacao() ? 1 : -1);
         });
     };
     // Pega todos os pedidos do firebase e add na lista de pedidos
@@ -498,7 +555,7 @@ var PedidoService = /** @class */ (function () {
                     var value = childSnapshot.val()[key];
                     attrPedidos.push(value);
                 }
-                /*
+                /* attrPedidos
                 Key: idPedido
                 0: dataAtualizacao
                 1: dataEmissao
@@ -509,9 +566,12 @@ var PedidoService = /** @class */ (function () {
                 6: vendedor
                 */
                 // adiciona o pedido na lista para exibir
-                pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */](attrPedidos[1], attrPedidos[6], attrPedidos[2], attrPedidos[5], attrPedidos[4], attrPedidos[3], attrPedidos[0]));
+                pedidos.push(new __WEBPACK_IMPORTED_MODULE_1__model_pedido_model__["a" /* Pedido */](// construtor
+                attrPedidos[1], attrPedidos[6], attrPedidos[2], attrPedidos[5], attrPedidos[4], attrPedidos[3], attrPedidos[0]));
+                // Obs.: Não é a forma mais elegante, mas é a forma que consegui
             });
         });
+        return pedidos;
     };
     PedidoService.prototype.initializeFirebase = function () {
         // Initialize Firebase
@@ -527,9 +587,10 @@ var PedidoService = /** @class */ (function () {
     };
     PedidoService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["h" /* ToastController */]) === "function" && _a || Object])
     ], PedidoService);
     return PedidoService;
+    var _a;
 }());
 
 //# sourceMappingURL=pedido.service.js.map

@@ -28,6 +28,36 @@
 			"frete" : "R$25",
 			"transportadora" : "Fedex",
 			"status" : "Processando"
+		},
+		
+		"3140" : {
+			"idPedido" : "3140",
+			"dataEmissao": "10-06-2018",
+			"dataAtualizacao": "10-06-2018",
+			"vendedor" : "Joao",
+			"frete" : "R$32",
+			"transportadora" : "Sedex",
+			"status" : "Transporte"
+		},
+		
+		"7701" : {
+			"idPedido" : "7701",
+			"dataEmissao": "01-07-2018",
+			"dataAtualizacao": "01-07-2018",
+			"vendedor" : "Maria",
+			"frete" : "R$0",
+			"transportadora" : "Correios",
+			"status" : "Executando"
+		},
+		
+		"1266" : {
+			"idPedido" : "1266",
+			"dataEmissao": "12-07-2017",
+			"dataAtualizacao": "12-07-2017",
+			"vendedor" : "Pedro",
+			"frete" : "R$52",
+			"transportadora" : "Correios",
+			"status" : "Processando"
 		}
 	}
 }

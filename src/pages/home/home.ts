@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { PedidoService } from '../../services/pedido.service'
-import { Pedido } from '../../model/pedido.model'
-import { PedidoPage } from '../pedido/pedido'
+import { PedidoService } from '../../services/pedido.service';
+import { Pedido } from '../../model/pedido.model';
+import { PedidoPage } from '../pedido/pedido';
+import { AboutPage } from '../about/about';
 
 
 @Component({
@@ -11,27 +12,28 @@ import { PedidoPage } from '../pedido/pedido'
 })
 export class HomePage {
   
-  pedidos:Array<Pedido>
+  pedidos:Array<Pedido>;
 
 
   constructor(public navCtrl: NavController, private pedidoService:PedidoService) {
-
+    this.pedidos = null;
      this.pedidos = this.pedidoService.loadPedidos();
   }
 
 
-  goToPedido(){
-      this.navCtrl.push(PedidoPage)
+  goToAbout(){
+      this.navCtrl.push(AboutPage);
   }
 
 
   editPedido(pedido:Pedido){
-    this.navCtrl.push(PedidoPage, {"pedidoToEdit": pedido})
+    this.navCtrl.push(PedidoPage, {"pedidoToEdit": pedido});
   }
 
 
-  deletePedido(pedido){
-    //TODO:remover item
+  deletePedido(pedido:Pedido){
+    this.pedidoService.excluirPedido(pedido);
+    this.navCtrl.push(HomePage); // apos excluir atualiza a pagina
   }
 
 
@@ -39,7 +41,7 @@ export class HomePage {
   getPedidos(ev: any) {
 
     // atualiza a lista de pedidos
-    this.pedidos = this.pedidoService.loadPedidos()
+    this.pedidos = this.pedidoService.loadPedidos();
 
     // valor digitado na busca
     let val = ev.target.value;

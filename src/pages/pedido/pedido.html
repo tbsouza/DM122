@@ -3,7 +3,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Pedido</ion-title>
+    <ion-title>Editar Pedido</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -45,6 +45,7 @@
                   <ion-input disabled="true" [(ngModel)]="pedido.transportadora" type="text" name="transportadora"></ion-input>
               </ion-item>
 
+              <!-- Apenas status do pedido habilitado para edicao -->
               <ion-item>
                 <ion-label>Status Pedido</ion-label>
                 <ion-select name="selectedStatus" [(ngModel)]="selectedStatus">

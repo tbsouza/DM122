@@ -48,9 +48,6 @@ export class PedidoPage {
     if(this.isEdit){
         this.pedidoService.edit(this.pedido);
     }
-    else{
-        this.pedidoService.addPedido(this.pedido);
-    }
     
     //go to home
     this.navCtrl.push(HomePage);

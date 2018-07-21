@@ -8,12 +8,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PedidoService } from '../services/pedido.service';
 import { PedidoPage } from '../pages/pedido/pedido';
+import { AboutPage } from '../pages/about/about';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    PedidoPage
+    PedidoPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { PedidoPage } from '../pages/pedido/pedido';
   entryComponents: [
     MyApp,
     HomePage,
+    AboutPage,
     PedidoPage
   ],
   providers: [

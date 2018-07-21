@@ -46,7 +46,7 @@ export class Pedido{
         var month = ("0" + (dateObj.getMonth()+1)).slice(-2);
         var year = dateObj.getFullYear();
         
-        // monta a data dd-mm-yyyy
+        // monta a data no formato dd-mm-yyyy
         var date = day + "-" + month + "-" + year;
 
         // set data
